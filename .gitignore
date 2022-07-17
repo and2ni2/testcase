@@ -1,1 +1,5 @@
 .DS_Store
+.env
+/vendor
+/node_modules
+public/storage
