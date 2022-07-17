@@ -36,9 +36,10 @@ class UpdateCurrencies extends Command
         foreach ($clean_currencies_data as $item) {
             Currency::updateOrCreate([
                 'name' => $item->title,
-                'rate' => $item->description,
                 'date' => Carbon::createFromFormat('d.m.Y', $item->pubDate)
-            ]);
+            ],
+            ['rate' => $item->description]
+            );
         }
 
         $this->info('Currencies was updated'); // Notify to terminal

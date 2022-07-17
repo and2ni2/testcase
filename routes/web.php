@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::middleware([
+    'auth:sanctum'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

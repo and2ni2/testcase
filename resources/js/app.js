@@ -1,15 +1,7 @@
-require('./bootstrap');
+import './bootstrap';
 
-window.Vue = require('vue').default;
-import { ZiggyVue } from 'ziggy';
-import { Ziggy } from './ziggy';
+import Alpine from 'alpinejs';
 
-Vue.use(ZiggyVue, Ziggy);
+window.Alpine = Alpine;
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-
-
-const app = new Vue({
-    el: '#app',
-});
+Alpine.start();
