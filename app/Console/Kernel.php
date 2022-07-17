@@ -15,7 +15,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // This line from update currencies every minute
+        // $schedule->command('currencies:update')->everyMinute();
+
+        // This line from update currencies from a custom cron schedule
+        $schedule->command('currencies:update')->cron('* * * * *');
     }
 
     /**
