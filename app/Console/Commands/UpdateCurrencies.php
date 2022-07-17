@@ -38,7 +38,7 @@ class UpdateCurrencies extends Command
                 'name' => $item->title,
                 'date' => Carbon::createFromFormat('d.m.Y', $item->pubDate)
             ],
-            ['rate' => $item->description]
+            ['rate' => ($item->description/$item->quant)]
             );
         }
 
