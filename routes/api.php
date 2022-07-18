@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\KatoController;
 use App\Imports\KatosImport;
 use App\Models\Kato;
 use Illuminate\Http\Request;
@@ -24,14 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('get_token', [CurrencyController::class, 'createUser']);
 
-Route::get('excel-test', function () {
-
-
-});
-
 Route::middleware('auth:sanctum')->group( function () {
     Route::controller(CurrencyController::class)->group(function () {
         Route::get('/currencies/{date}', 'getCurrencies')->name('get_currencies');
         Route::get('/currency/{name}', 'getCurrency')->name('get_currency');
+    });
+
+    Route::controller(KatoController::class)->group(function () {
+        Route::get('/kato', 'getActual')->name('get_actual');
+        Route::get('/kato/search', 'search')->name('kato_search');
+        Route::get('/kato/tree/{te}', 'getTree')->name('get_tree');
     });
 });

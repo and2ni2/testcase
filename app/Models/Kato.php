@@ -28,6 +28,26 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null                                                                                                    $end_date
  * @property Carbon|null                                                                                                    $created_at
  * @property Carbon|null                                                                                                    $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereFullnameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereFullnameKz($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereNameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereNameKz($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereParent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereK($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereHij($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereEf($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereCd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereAb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Kato whereTe($value)
+ * @mixin \Eloquent
  */
 
 class Kato extends Model
@@ -57,4 +77,16 @@ class Kato extends Model
         'start_date' => 'datetime',
         'end_date' => 'datetime'
     ];
+
+
+    /**
+     * Get all Kato childrens record by 'te'
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function children(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->HasMany(self::class, 'parent', 'te')->with('children');
+    }
+
 }
