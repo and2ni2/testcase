@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('name_kz');
             $table->string('fullname_ru');
             $table->string('fullname_kz');
-            $table->dateTime('start_date');
+            $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
             $table->timestamps();
         });
